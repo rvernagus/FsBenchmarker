@@ -3,6 +3,6 @@
 open FsBenchmarker.Benchmark
 
 trial "Example"
-|> forEach (fun () -> printf "HI!")
+|> forEach (fun () -> printf ".")
 |> run (seconds 5)
 |> printfn "%A"
