@@ -2,8 +2,8 @@
 #load "Benchmark.fs"
 open FsBenchmarker.Benchmark
 open System.Threading
+open NBenchmarker
 
-trial "Print Dot" (fun () -> printf "."; Thread.Sleep(100))
-|> andTrial "Print Dash" (fun () -> printf "-"; Thread.Sleep(100))
+trial "Print Dot" (fun () -> Thread.Sleep(100))
 |> run (seconds 5)
-|> Seq.iter (fun result -> printfn "%s: %dms" result.TrialName result.ElapsedTime.Milliseconds)
+|> printfn "%A"

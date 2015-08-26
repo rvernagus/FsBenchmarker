@@ -11,13 +11,12 @@ module Benchmark =
     let trial name (func : unit -> unit) =
         let t = new Trial(name)
         t.ForEachIteration <- actionFrom func
-        seq [t]
+        t
 
-    let andTrial name (func : unit -> unit) (ts : Trial seq) =
-        Seq.append ts <| trial name func
+//    let andTrial name (func : unit -> unit) (ts : Trial seq) =
+//        Seq.append ts <| trial name func
 
-    let run (c : IBenchmarkConstraint) (ts : Trial seq) =
+    let run (c : IBenchmarkConstraint) (t : Trial) =
         let bm = new Benchmarker()
         bm.AddConstraint(c)
-        let runTrial (t : Trial) = bm.Run(t)
-        Seq.map runTrial ts
+        bm.Run(t)
